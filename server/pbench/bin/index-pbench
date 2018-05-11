@@ -194,7 +194,7 @@ def es_template(es, options, INDEX_PREFIX, INDEX_VERSION, config):
         template='%s.result-data.*' % (INDEX_PREFIX,),
         settings=index_settings,
         mappings=results_mappings)
-    
+
     if not es:
         # Don't do anything if we don't have an Elasticsearch client object.
         print(run_template_name, json.dumps(run_template_body, indent=4, sort_keys=True))
@@ -521,6 +521,173 @@ _known_csv_handlers = {
             'handling': 'individual'
         },
     },
+    'proc-vmstat': {
+        '@prospectus': {
+            # For proc-vmstat .csv files, we want to merge all columns into
+            # one JSON document
+            'handling': 'unify'
+        },
+        'proc-vmstat_allocstall_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'allocstall',
+            'display': 'Alloc_Stall',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_balloon_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'balloon',
+            'display': 'Balloon',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_compact_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'compact',
+            'display': 'Compact',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_drop_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'drop',
+            'display': 'Drop',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_htlb_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'buddy_alloc',
+            'display': 'Buddy_Allocations',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_kswapd_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'kswapd',
+            'display': 'Kswapd',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_nr_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'nr',
+            'display': 'NR',
+            'units': 'range',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_numa_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'numa',
+            'display': 'Numa',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_oom_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'oom',
+            'display': 'OOM',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_pgalloc_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'pgalloc',
+            'display': 'PG_Alloc',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_pgmigrate_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'pgmigrate',
+            'display': 'PG_Migrate',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_pgscan_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'pgscan',
+            'display': 'PG_Scan',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_pgskip_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'pgskip',
+            'display': 'PG_Skip',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_pgsteal_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'pgsteal',
+            'display': 'PG_Steal',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_slabs_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'slabs',
+            'display': 'Slabs',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_swap_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'swap',
+            'display': 'swap',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_thp_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'thp',
+            'display': 'Thp',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_unevictable_delta_sec.csv	': {
+            'class': 'vmstat',
+            'metric': 'unevictable',
+            'display': 'Unevictable',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_workingset_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'workingset',
+            'display': 'Working_Set',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        },
+        'proc-vmstat_zone_delta_sec.csv': {
+            'class': 'vmstat',
+            'metric': 'zone',
+            'display': 'Zone',
+            'units': 'count',
+            'subfields': [],
+            'colpat': re.compile(r'(?P<id>.+)')
+        }
+    },
     'sar': {},
     'turbostat': {},
 }
@@ -566,7 +733,7 @@ class ToolData(object):
         # Impedance match between host names used when
         # registering tools and <label>:<hostname_s>
         # convention used when collecting the results.
-        
+
         # import pdb; pdb.set_trace()
         label = get_tool_label(host, mdlog)
         hostname_s = get_tool_hostname_s(host, mdlog)
@@ -669,7 +836,7 @@ class ToolData(object):
             # Create the base document per identifier; the timestamp is taken
             # from the "first" timestamp, converted to a floating point
             # seconds value, and then formatted as a string.
-            first = int(first)/1000
+            first = float(first)/1000
             ts = datetime.utcfromtimestamp(first)
             ts_str = ts.strftime("%Y-%m-%dT%H:%M:%S.%f%z")
             datum = _dict_const()
@@ -730,7 +897,7 @@ class ToolData(object):
                 except Exception:
                     # assume that item[@timestamp] is already in %Y-%m-%dT%H:%M:%S.%f%z format
                     pass
-                
+
                 yield item
         return
 
@@ -877,7 +1044,7 @@ def get_tool_hostname_s(host, mdlog):
         return mdlog.get("tools/" + host, "hostname-s")
     except:
         return ""
-    
+
 def mk_tool_data(mdlog, md5sum, tb, tstamp):
     experiment = mdlog.get("pbench", "name")
     try:
@@ -943,7 +1110,7 @@ def mk_result_data_actions(ptb, options, INDEX_PREFIX):
                 "_source":  source
             }
             yield action
-        
+
     return
 
 ###########################################################################
@@ -1311,7 +1478,7 @@ def _to_utc(l, u):
     """
     lts = datetime.strptime(l, "%Y-%m-%dT%H:%M:%S")
     uts = datetime.strptime(u[:u.rfind('.')] , "%Y-%m-%dT%H:%M:%S")
-        
+
     offset = lts - uts
     res = round(float(offset.seconds) / 60 / 60 + offset.days * 24, 1)
     return (lts - timedelta(0, int(res*60*60), 0)).isoformat()

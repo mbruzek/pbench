@@ -1,0 +1,32 @@
+{
+    "properties": {
+        "vmstat": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "allocstall": { "type": "float" },
+                "balloon": { "type": "float" },
+                "compact": { "type": "float" },
+                "drop": { "type": "float" },
+                "buddy_alloc": { "type": "float" },
+                "kswapd": { "type": "float" },
+                "nr": { "type": "float" },
+                "numa": { "type": "float" },
+                "oom": { "type": "float" },
+                "pgalloc": { "type": "float" },
+                "pgmigrate": { "type": "float" },
+                "pgscan": { "type": "float" },
+                "pgskip": { "type": "float" },
+                "pgsteal": { "type": "float" },
+                "slabs": { "type": "float" },
+                "swap": { "type": "float" },
+                "thp": { "type": "float" },
+                "unevictable": { "type": "float" },
+                "workingset": { "type": "float" },
+                "zone": { "type": "float" }
+            }
+        }
+    }
+}
